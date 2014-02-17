@@ -1,6 +1,6 @@
-# lunch-finder
+# Lunch Finder
 
-FIXME
+A random ballot system to decide where we go to lunch on Firsty Friday 
 
 ## Prerequisites
 
@@ -16,4 +16,5 @@ To start a web server for the application, run:
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Michael Simpson
+Available under the AGPL
