@@ -1,10 +1,11 @@
 (ns lunch-finder.handler
   (:use compojure.core)
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [lunch-finder.views.vote :as vote-view]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] (vote-view/main))
   (route/resources "/")
   (route/not-found "Not Found"))
 
