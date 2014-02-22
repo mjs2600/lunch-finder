@@ -9,35 +9,40 @@
 (def app-state (atom {:restaurants [{:name "Q-Shack" :votes 0}
                                     {:name "Thai Cafe" :votes 0}]}))
 
+(defn vote-for-restaurant [restaurants vote]
+  (vec (map #(if (= % vote)
+             (update-in % [:votes] inc)
+             %) restaurants)))
+
 (defn restaurant-view [restaurant owner]
   (reify
     om/IRenderState
-    (render-state [this {:keys [delete]}]
+    (render-state [this {:keys [vote]}]
       (dom/span nil
                (dom/dt nil (:name restaurant))
                (dom/dd nil (str "Votes: " (:votes restaurant)))
-               (dom/button #js {:onClick (fn [e] (put! delete @restaurant))} "Delete")))))
+               (dom/button #js {:onClick (fn [e] (put! vote @restaurant))} "Vote")))))
 
 (defn restaurants-view [app owner]
   (reify
     om/IInitState
     (init-state [_]
-      {:delete (chan)})
+      {:vote (chan)})
     om/IWillMount
     (will-mount [_]
-      (let [delete (om/get-state owner :delete)]
+      (let [vote (om/get-state owner :vote)]
         (go (loop []
-              (let [restaurant (<! delete)]
+              (let [restaurant (<! vote)]
                 (om/transact! app :restaurants
-                              (fn [xs] (vec (remove #(= restaurant %) xs))))
+                              (fn [xs] (vote-for-restaurant xs restaurant)))
                 (recur))))))
     om/IRenderState
-    (render-state [this {:keys [delete]}]
+    (render-state [this {:keys [vote]}]
       (dom/div nil
                (dom/h2 nil "Restaurants")
                (apply dom/dl #js{:className "restaurants"}
                       (om/build-all restaurant-view (:restaurants app)
-                                    {:init-state {:delete delete}}))))))
+                                    {:init-state {:vote vote}}))))))
 
 (om/root
  restaurants-view
