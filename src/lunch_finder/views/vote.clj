@@ -5,8 +5,9 @@
    hiccup.element])
 
 (defn main []
-  (html5
-   [:head
-    (include-js "js/goog/base.js" "/js/main.js")
-    (javascript-tag "goog.require('lunch_finder.core');")]
-   [:body [:div "test"]]))
+  (html5 [:body
+          [:div {:id "app"}]
+          (include-js "js/goog/base.js"
+                      "/js/main.js"
+                      "http://fb.me/react-0.9.0.js")
+          (javascript-tag "goog.require('lunch_finder.core');")]))

@@ -3,11 +3,12 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2156"]
+                 [org.clojure/core.async "0.1.267.0-0d7780-alpha"]
                  [compojure "1.1.6"]
                  [hiccup "1.0.5"]
                  [sablono "0.2.6"]
                  [clojurewerkz/neocons "2.0.1"]
-                 [om "0.4.2"]]
+                 [om "0.5.0"]]
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.2"]]
   :ring {:handler lunch-finder.handler/app}
