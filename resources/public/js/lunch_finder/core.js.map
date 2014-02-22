@@ -1,8 +1,0 @@
-{"version":3,
- "file":
- "/Users/mjs2600/clojure/lunch-finder/resources/public/js/lunch_finder/core.js",
- "sources":["core.cljs"],
- "lineCount":8,
- "mappings":
- ";AAAA;;AAEA,0BAAA,kBAAA,5CAAOA,4CAAS,mBAAA,ZAAMC;;AAEtB,AAAM,AAAUC,gBAAWF",
- "names":["lunch-finder.core/start", "js/console", "js/window"]}
