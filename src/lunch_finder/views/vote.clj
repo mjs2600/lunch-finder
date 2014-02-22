@@ -5,7 +5,8 @@
    hiccup.element])
 
 (defn main []
-  (html5 [:body
+  (html5 [:head [:title "Lunch Finder"]]
+         [:body
           [:div {:id "app"}]
           (include-js "js/goog/base.js"
                       "/js/main.js"
